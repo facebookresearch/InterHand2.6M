@@ -11,6 +11,9 @@
 <p align="middle">
     <img src="assets/teaser_multiview.gif", width="780" height="240">
 </p>
+<p align="center">
+Above demo videos have low-quality frames because of the compression for the README upload.
+</p>
 
 ## InterHand2.6M dataset
 * For the **InterHand2.6M dataset download and instructions**, go to [[HOMEPAGE](https://mks0601.github.io/InterHand2.6M/)].
