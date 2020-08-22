@@ -6,10 +6,10 @@
 * Our **InterHand2.6M dataset** is the first large-scale real-captured dataset with **accurate GT 3D interacting hand poses**.
 
 <p align="middle">
-<img src="https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/teaser_1.gif" width="260" height="160"><img src="https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/teaser_2.gif" width="260" height="160"><img src="https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/teaser_3.gif" width="260" height="160">
+    <img src="assets/teaser.gif", width="780" height="160">
 </p>
 <p align="middle">
-<img src="https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/teaser_multiview_1.gif" width="390" height="240"><img src="https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/teaser_multiview_2.gif" width="390" height="240">
+    <img src="assets/teaser_multiview.gif", width="780" height="240">
 </p>
 
 ## InterHand2.6M dataset
@@ -118,13 +118,13 @@ to test the network on the GPU 0,1,2,3 with `snapshot_20.pth.tar`.  `--gpu 0,1,2
 ## Results  
 Here I provide the performance and pre-trained snapshots of InterNet, and output of the [RootNet](https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE) as well. 
 <p align="center">
-<img src="https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/AP_h.png">
+<img src="assets/AP_h.png">
 </p>
 <p align="center">
-<img src="https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/MPJPE.png">
+<img src="assets/MPJPE.png">
 </p>
 <p align="center">
-<img src="https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/MRRPE.png">
+<img src="assets/MRRPE.png">
 </p>
 
 * Pre-trained InterNet trained on [[InterHand2.6M](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.InterHand2.6M.zip)] [[STB](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.STB.zip)] [[RHD](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.RHD.zip)]
