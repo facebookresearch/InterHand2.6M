@@ -78,7 +78,7 @@ class Trainer(Base):
     def _make_batch_generator(self, annot_subset):
         # data load and construct batch generator
         self.logger.info("Creating train dataset...")
-        trainset_loader = Dataset(transforms.ToTensor(), "train", anot_subset)
+        trainset_loader = Dataset(transforms.ToTensor(), "train", annot_subset)
         batch_generator = DataLoader(dataset=trainset_loader, batch_size=cfg.num_gpus*cfg.train_batch_size, shuffle=True, num_workers=cfg.num_thread, pin_memory=True)
         
         self.joint_num = trainset_loader.joint_num
