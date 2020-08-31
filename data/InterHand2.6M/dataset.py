@@ -74,7 +74,7 @@ class Dataset(torch.utils.data.Dataset):
             
             campos, camrot = np.array(cameras[str(capture_id)]['campos'][str(cam)], dtype=np.float32), np.array(cameras[str(capture_id)]['camrot'][str(cam)], dtype=np.float32)
             focal, princpt = np.array(cameras[str(capture_id)]['focal'][str(cam)], dtype=np.float32), np.array(cameras[str(capture_id)]['princpt'][str(cam)], dtype=np.float32)
-            joint_world = np.array(joints[str(capture_id)][str(frame_idx)], dtype=np.float32)
+            joint_world = np.array(joints[str(capture_id)][str(frame_idx)]['world_coord'], dtype=np.float32)
             joint_cam = world2cam(joint_world.transpose(1,0), camrot, campos.reshape(3,1)).transpose(1,0)
             joint_img = cam2pixel(joint_cam, focal, princpt)[:,:2]
 
