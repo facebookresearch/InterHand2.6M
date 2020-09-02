@@ -120,19 +120,9 @@ to test the network on the GPU 0,1,2,3 with `snapshot_20.pth.tar`.  `--gpu 0,1,2
 
 ## Results  
 Here I provide the performance and pre-trained snapshots of InterNet, and output of the [RootNet](https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE) as well. 
-<p align="center">
-<img src="assets/AP_h.png">
-</p>
-<p align="center">
-<img src="assets/MPJPE.png">
-</p>
-<p align="center">
-<img src="assets/MRRPE.png">
-</p>
-
-* Pre-trained InterNet trained on [[InterHand2.6M](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.InterHand2.6M.zip)] [[STB](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.STB.zip)] [[RHD](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.RHD.zip)]
+* Pre-trained InterNet trained on [[InterHand2.6M v0.0](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.InterHand2.6M.v0.0.zip)] [[full InterHand2.6M](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.InterHand2.6M.zip)] [[STB](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.STB.zip)] [[RHD](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.RHD.zip)]
 * [RootNet](https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE) output on [[InterHand2.6M](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/RootNet.output.on.InterHand2.6M.zip)] [[STB](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/RootNet.output.on.STB.zip)] [[RHD](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/RootNet.output.on.RHD.zip)]
-
+* InterNet evaluation results on [[InterHand2.6M v0.0](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.results.on.InterHand2.6M.v0.0.zip)]
 
 ## Reference  
 ```  
