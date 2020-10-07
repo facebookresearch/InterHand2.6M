@@ -15,7 +15,7 @@
 Above demo videos have low-quality frames because of the compression for the README upload.
 </p>
 <p align="middle">
-<img src="assets/mano1.jpg" width="180" height="180"><img src="assets/mano2.jpg" width="180" height="180"><img src="assets/mano3.jpg" width="180" height="180"><img src="assets/mano4.jpg" width="180" height="180"><img src="assets/mano5.jpg" width="180" height="180"><img src="assets/mano6.jpg" width="180" height="180"><img src="assets/mano7.jpg" width="180" height="180"><img src="assets/mano8.jpg" width="180" height="180"><img src="assets/mano9.jpg" width="180" height="180"><img src="assets/mano10.jpg" width="180" height="180">
+<img src="assets/mano1.jpg" width="150" height="150"><img src="assets/mano2.jpg" width="150" height="150"><img src="assets/mano3.jpg" width="150" height="150"><img src="assets/mano4.jpg" width="150" height="150"><img src="assets/mano5.jpg" width="150" height="150"><img src="assets/mano6.jpg" width="150" height="150"><img src="assets/mano7.jpg" width="150" height="150"><img src="assets/mano8.jpg" width="150" height="150"><img src="assets/mano9.jpg" width="150" height="150"><img src="assets/mano10.jpg" width="150" height="150">
 </p>
 
 ## News
