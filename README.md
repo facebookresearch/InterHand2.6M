@@ -25,6 +25,12 @@ Above demo videos have low-quality frames because of the compression for the REA
 * For the **InterHand2.6M dataset download and instructions**, go to [[HOMEPAGE](https://mks0601.github.io/InterHand2.6M/)].
 * Belows are instructions for **our baseline model**, InterNet, for 3D interacting hand pose estimation from a single RGB image.
 
+## MANO mesh rendering demo
+1. Install [SMPLX](https://github.com/vchoutas/smplx)
+2. `cd MANO_render`
+3. Set `smplx_path` and `root_path` in `render.py`
+3. Run `python render.py`
+
 ## Directory
 
 ### Root
