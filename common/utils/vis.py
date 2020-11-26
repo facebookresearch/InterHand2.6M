@@ -69,7 +69,7 @@ def get_keypoint_rgb(skeleton):
         
     return rgb_dict
 
-def vis_keypoints(img, kps, score, skeleton, filename, score_thr=0.4, line_width=3, circle_rad = 3):
+def vis_keypoints(img, kps, score, skeleton, filename, score_thr=0.4, line_width=3, circle_rad = 3, save_path=None):
     
     rgb_dict = get_keypoint_rgb(skeleton)
     _img = Image.fromarray(img.transpose(1,2,0).astype('uint8')) 
@@ -88,8 +88,11 @@ def vis_keypoints(img, kps, score, skeleton, filename, score_thr=0.4, line_width
             draw.ellipse((kps[i][0]-circle_rad, kps[i][1]-circle_rad, kps[i][0]+circle_rad, kps[i][1]+circle_rad), fill=rgb_dict[joint_name])
         if score[pid] > score_thr and pid != -1:
             draw.ellipse((kps[pid][0]-circle_rad, kps[pid][1]-circle_rad, kps[pid][0]+circle_rad, kps[pid][1]+circle_rad), fill=rgb_dict[parent_joint_name])
-
-    _img.save(osp.join(cfg.vis_dir, filename))
+    
+    if save_path is None:
+        _img.save(osp.join(cfg.vis_dir, filename))
+    else:
+        _img.save(osp.join(save_path, filename))
 
 
 def vis_3d_keypoints(kps_3d, score, skeleton, filename, score_thr=0.4, line_width=3, circle_rad=3):
