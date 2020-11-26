@@ -19,6 +19,7 @@ Above demo videos have low-quality frames because of the compression for the REA
 </p>
 
 ## News
+* 2020.11.26. Fitted MANO parameters are updated to the better ones (fitting error is about 5 mm). Also, reduced to much smaller file size by providing parameters fitted to the world coordinates (independent on the camera view).
 * 2020.10.7. Fitted MANO parameters are available! They are obtained by [NeuralAnnot](https://arxiv.org/abs/2011.11232).
 
 ## InterHand2.6M dataset
