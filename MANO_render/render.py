@@ -77,12 +77,13 @@ for img_path in tqdm(img_path_list):
     for hand_type in ('right', 'left'):
         # get mesh coordinate
         try:
-            mano_param = mano_params[capture_idx][frame_idx][cam_idx][hand_type]
+            mano_param = mano_params[capture_idx][frame_idx][hand_type]
             if mano_param is None:
                 continue
         except KeyError:
             continue
-
+        
+        # get MANO 3D mesh coordinates (world coordinate)
         mano_pose = torch.FloatTensor(mano_param['pose']).view(-1,3)
         root_pose = mano_pose[0].view(1,3)
         hand_pose = mano_pose[1:,:].view(1,-1)
@@ -90,7 +91,12 @@ for img_path in tqdm(img_path_list):
         trans = torch.FloatTensor(mano_param['trans']).view(1,-1)
         output = mano_layer[hand_type](global_orient=root_pose, hand_pose=hand_pose, betas=shape, transl=trans)
         mesh = output.vertices[0].numpy() # meter unit
-        joint = output.joints[0].numpy() # meter unit
+        
+        # apply camera extrinsics
+        cam_param = cam_params[capture_idx]
+        t, R = np.array(cam_param['campos'][str(cam_idx)], dtype=np.float32).reshape(3), np.array(cam_param['camrot'][str(cam_idx)], dtype=np.float32).reshape(3,3)
+        t = -np.dot(R,t.reshape(3,1)).reshape(3) # -Rt -> t
+        mesh = np.dot(R, mesh.transpose(1,0)).transpose(1,0) + t.reshape(1,3)
         
         # fitting error
         fit_err = get_fitting_error(mesh, ih26m_joint_regressor, cam_params, joints, hand_type, capture_idx, frame_idx, cam_idx)
@@ -106,8 +112,7 @@ for img_path in tqdm(img_path_list):
         scene = pyrender.Scene(ambient_light=(0.3, 0.3, 0.3))
         scene.add(mesh, 'mesh')
 
-        # camera
-        cam_param = cam_params[capture_idx]
+        # add camera intrinsics
         focal = np.array(cam_param['focal'][cam_idx], dtype=np.float32).reshape(2)
         princpt = np.array(cam_param['princpt'][cam_idx], dtype=np.float32).reshape(2)
         camera = pyrender.IntrinsicsCamera(fx=focal[0], fy=focal[1], cx=princpt[0], cy=princpt[1])
