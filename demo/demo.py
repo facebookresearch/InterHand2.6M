@@ -119,6 +119,9 @@ vis_img = original_img.copy()[:,:,::-1].transpose(2,0,1)
 vis_img = vis_keypoints(vis_img, joint_coord, joint_valid, skeleton, filename, save_path='.')
 
 # visualize joint coord in 3D space
+# The 3D coordinate in here consists of x,y pixel and z root-relative depth.
+# To make x,y, and z in real unit (e.g., mm), you need to know camera intrincis and root depth.
+# The root depth can be obtained from RootNet (https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE)
 filename = 'result_3d'
 vis_3d_keypoints(joint_coord, joint_valid, skeleton, filename)
 
