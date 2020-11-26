@@ -19,12 +19,19 @@ Above demo videos have low-quality frames because of the compression for the REA
 </p>
 
 ## News
+* 2020.11.26. Demo code for a random image is added! Checkout below instructions.
 * 2020.11.26. Fitted MANO parameters are updated to the better ones (fitting error is about 5 mm). Also, reduced to much smaller file size by providing parameters fitted to the world coordinates (independent on the camera view).
 * 2020.10.7. Fitted MANO parameters are available! They are obtained by [NeuralAnnot](https://arxiv.org/abs/2011.11232).
 
 ## InterHand2.6M dataset
 * For the **InterHand2.6M dataset download and instructions**, go to [[HOMEPAGE](https://mks0601.github.io/InterHand2.6M/)].
 * Belows are instructions for **our baseline model**, InterNet, for 3D interacting hand pose estimation from a single RGB image.
+
+## Demo on a random image
+1. Download pre-trained InterNet from [here](https://drive.google.com/drive/folders/1BET1f5p2-1OBOz6aNLuPBAVs_9NLz5Jo?usp=sharing)
+2. Put the model at `demo` folder
+3. Go to `demo` folder and run `python demo.py --gpu 0 --test_epoch 20`
+4. You can see `result_2D.jpg` and 3D viewer.
 
 ## MANO mesh rendering demo
 1. Install [SMPLX](https://github.com/vchoutas/smplx)
@@ -133,6 +140,10 @@ to test the network on the GPU 0,1,2,3 with `snapshot_20.pth.tar`.  `--gpu 0,1,2
 
 ## Results  
 Here I provide the performance and pre-trained snapshots of InterNet, and output of the [RootNet](https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE) as well. 
+### Google drive (will be fast)
+Will be available soon.
+
+### Github release (can be slow)
 * Pre-trained InterNet trained on [[InterHand2.6M v0.0](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.InterHand2.6M.v0.0.zip)] [[full InterHand2.6M](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.InterHand2.6M.zip)] [[STB](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.STB.zip)] [[RHD](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.RHD.zip)]
 * [RootNet](https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE) output on [[full InterHand2.6M](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/RootNet.output.on.InterHand2.6M.zip)] [[STB](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/RootNet.output.on.STB.zip)] [[RHD](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/RootNet.output.on.RHD.zip)]
 * InterNet evaluation results on [[InterHand2.6M v0.0](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.results.on.InterHand2.6M.v0.0.zip)]
