@@ -48,6 +48,11 @@ smplx_path = 'SMPLX_PATH'
 mano_layer = {'right': smplx.create(smplx_path, 'mano', use_pca=False, is_rhand=True), 'left': smplx.create(smplx_path, 'mano', use_pca=False, is_rhand=False)}
 ih26m_joint_regressor = np.load('J_regressor_mano_ih26m.npy')
 
+# fix MANO shapedirs of the left hand bug (https://github.com/vchoutas/smplx/issues/48)
+if torch.sum(torch.abs(mano_layer['left'].shapedirs[:,0,:] - mano_layer['right'].shapedirs[:,0,:])) < 1:
+    print('Fix shapedirs bug of MANO')
+    mano_layer['left'].shapedirs[:,0,:] *= -1
+            
 root_path = 'PATH_TO_DB'
 img_root_path = osp.join(root_path, 'images')
 annot_root_path = osp.join(root_path, 'annotations')
