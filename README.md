@@ -30,8 +30,9 @@ Above demo videos have low-quality frames because of the compression for the REA
 ## Demo on a random image
 1. Download pre-trained InterNet from [here](https://drive.google.com/drive/folders/1BET1f5p2-1OBOz6aNLuPBAVs_9NLz5Jo?usp=sharing)
 2. Put the model at `demo` folder
-3. Go to `demo` folder and run `python demo.py --gpu 0 --test_epoch 20`
-4. You can see `result_2D.jpg` and 3D viewer.
+3. Go to `demo` folder and edit `bbox` in [here](https://github.com/facebookresearch/InterHand2.6M/blob/5de679e614151ccfd140f0f20cc08a5f94d4b147/demo/demo.py#L74)
+4. run `python demo.py --gpu 0 --test_epoch 20`
+5. You can see `result_2D.jpg` and 3D viewer.
 
 ## MANO mesh rendering demo
 1. Install [SMPLX](https://github.com/vchoutas/smplx)
