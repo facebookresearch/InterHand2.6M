@@ -1,4 +1,4 @@
-Copyright (c) Facebook, Inc. and its affiliates.
+# Copyright (c) Facebook, Inc. and its affiliates.
 
 import os
 import numpy as np
@@ -17,7 +17,7 @@ from tqdm import tqdm
 
 def get_fitting_error(mesh, regressor, cam_params, joints, hand_type, capture_id, frame_idx, cam):
     # ih26m joint coordinates from MANO mesh
-    ih26m_joint_from_mesh = np.dot(ih26m_joint_regressor, mesh) * 1000 # meter to milimeter
+    ih26m_joint_from_mesh = np.dot(regressor, mesh)
 
     # camera extrinsic parameters
     t, R = np.array(cam_params[str(capture_id)]['campos'][str(cam)], dtype=np.float32).reshape(3), np.array(cam_params[str(capture_id)]['camrot'][str(cam)], dtype=np.float32).reshape(3,3)
@@ -95,7 +95,7 @@ for img_path in tqdm(img_path_list):
         shape = torch.FloatTensor(mano_param['shape']).view(1,-1)
         trans = torch.FloatTensor(mano_param['trans']).view(1,-1)
         output = mano_layer[hand_type](global_orient=root_pose, hand_pose=hand_pose, betas=shape, transl=trans)
-        mesh = output.vertices[0].numpy() # meter unit
+        mesh = output.vertices[0].numpy() * 1000 # milimeter unit
         
         # apply camera extrinsics
         cam_param = cam_params[capture_idx]
