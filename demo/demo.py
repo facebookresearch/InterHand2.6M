@@ -98,7 +98,7 @@ joint_coord[:,2] = (joint_coord[:,2]/cfg.output_hm_shape[0] * 2 - 1) * (cfg.bbox
 rel_root_depth = (rel_root_depth/cfg.output_root_hm_shape * 2 - 1) * (cfg.bbox_3d_size_root/2)
 
 # right hand root depth == 0, left hand root depth == rel_root_depth
-joint_coord[joint_type['left'],:] += rel_root_depth
+joint_coord[joint_type['left'],2] += rel_root_depth
 
 # handedness
 joint_valid = np.zeros((joint_num*2), dtype=np.float32)
