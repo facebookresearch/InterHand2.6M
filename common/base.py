@@ -114,7 +114,7 @@ class Trainer(Base):
         ckpt = torch.load(model_path)
         start_epoch = ckpt['epoch'] + 1
 
-        model.load_state_dict(ckpt['network'], strict=False)
+        model.load_state_dict(ckpt['network'])
         try:
             optimizer.load_state_dict(ckpt['optimizer'])
         except:
@@ -149,7 +149,7 @@ class Tester(Base):
         model = get_model('test', self.joint_num)
         model = DataParallel(model).cuda()
         ckpt = torch.load(model_path)
-        model.load_state_dict(ckpt['network'], strict=False)
+        model.load_state_dict(ckpt['network'])
         model.eval()
 
         self.model = model
