@@ -25,7 +25,7 @@ Above demo videos have low-quality frames because of the compression for the REA
 
 ## InterHand2.6M dataset
 * For the **InterHand2.6M dataset download and instructions**, go to [[HOMEPAGE](https://mks0601.github.io/InterHand2.6M/)].
-* Full images in 5 fps and 30 fps are under inspection of FB to prevent privacy leak (e.g., fingerprint and face of the subjects). It is taking much longer time than we expected (maybe due to the COVID)... Sorry for the late release :( :( :(
+* Full images in 5 fps and 30 fps are under inspection of FB to prevent privacy leak (e.g., fingerprint and face of the subjects). It is taking much longer time than we expected (maybe due to the COVID)... Sorry for the late release :sob::sob::sob:
 * Belows are instructions for **our baseline model**, InterNet, for 3D interacting hand pose estimation from a single RGB image.
 
 ## Demo on a random image
