@@ -95,7 +95,7 @@ for img_path in tqdm(img_path_list):
         shape = torch.FloatTensor(mano_param['shape']).view(1,-1)
         trans = torch.FloatTensor(mano_param['trans']).view(1,-1)
         output = mano_layer[hand_type](global_orient=root_pose, hand_pose=hand_pose, betas=shape, transl=trans)
-        mesh = output.vertices[0].numpy() * 1000 # milimeter unit
+        mesh = output.vertices[0].numpy() * 1000 # meter to milimeter
         
         # apply camera extrinsics
         cam_param = cam_params[capture_idx]
@@ -108,6 +108,7 @@ for img_path in tqdm(img_path_list):
         print('Fitting error: ' + str(fit_err)+ ' mm')
 
         # mesh
+        mesh = mesh / 1000 # milimeter to meter
         mesh = trimesh.Trimesh(mesh, mano_layer[hand_type].faces)
         rot = trimesh.transformations.rotation_matrix(
             np.radians(180), [1, 0, 0])
