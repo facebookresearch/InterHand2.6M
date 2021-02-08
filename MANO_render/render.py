@@ -15,6 +15,14 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 from tqdm import tqdm
 
+def save_obj(v, f, file_name='output.obj'):
+    obj_file = open(file_name, 'w')
+    for i in range(len(v)):
+        obj_file.write('v ' + str(v[i][0]) + ' ' + str(v[i][1]) + ' ' + str(v[i][2]) + '\n')
+    for i in range(len(f)):
+        obj_file.write('f ' + str(f[i][0]+1) + '/' + str(f[i][0]+1) + ' ' + str(f[i][1]+1) + '/' + str(f[i][1]+1) + ' ' + str(f[i][2]+1) + '/' + str(f[i][2]+1) + '\n')
+    obj_file.close()
+    
 def get_fitting_error(mesh, regressor, cam_params, joints, hand_type, capture_id, frame_idx, cam):
     # ih26m joint coordinates from MANO mesh
     ih26m_joint_from_mesh = np.dot(regressor, mesh)
@@ -106,7 +114,10 @@ for img_path in tqdm(img_path_list):
         # fitting error
         fit_err = get_fitting_error(mesh, ih26m_joint_regressor, cam_params, joints, hand_type, capture_idx, frame_idx, cam_idx)
         print('Fitting error: ' + str(fit_err)+ ' mm')
-
+        
+        # save mesh to obj files
+        save_obj(mesh, mano_layer[hand_type].faces, osp.join(save_path, img_path.split('/')[-1][:-4] + '_' + hand_type + '.obj'))
+        
         # mesh
         mesh = mesh / 1000 # milimeter to meter
         mesh = trimesh.Trimesh(mesh, mano_layer[hand_type].faces)
