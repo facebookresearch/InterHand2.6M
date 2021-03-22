@@ -19,13 +19,13 @@ Above demo videos have low-quality frames because of the compression for the REA
 </p>
 
 ## News
+* 2021.03.22. Finally, InterHand2.6M v1.0, which includes *all images of 5 fps version*, is released. 30 fps version will be also released soon!
 * 2020.11.26. Demo code for a random image is added! Checkout below instructions.
 * 2020.11.26. Fitted MANO parameters are updated to the better ones (fitting error is about 5 mm). Also, reduced to much smaller file size by providing parameters fitted to the world coordinates (independent on the camera view).
 * 2020.10.7. Fitted MANO parameters are available! They are obtained by [NeuralAnnot](https://arxiv.org/abs/2011.11232).
 
 ## InterHand2.6M dataset
 * For the **InterHand2.6M dataset download and instructions**, go to [[HOMEPAGE](https://mks0601.github.io/InterHand2.6M/)].
-* Full images in 5 fps and 30 fps are under inspection of FB to prevent privacy leak (e.g., fingerprint and face of the subjects). It is taking much longer time than we expected (maybe due to the COVID)... Sorry for the late release :sob::sob::sob:
 * Belows are instructions for **our baseline model**, InterNet, for 3D interacting hand pose estimation from a single RGB image.
 
 ## Demo on a random image
