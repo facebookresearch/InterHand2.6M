@@ -19,7 +19,7 @@ Above demo videos have low-quality frames because of the compression for the REA
 </p>
 
 ## News
-* 2021.03.22. Finally, InterHand2.6M v1.0, which includes *all images of 5 fps version*, is released. 30 fps version will be also released soon!
+* 2021.03.22. Finally, InterHand2.6M v1.0, which includes *all images of 5 fps version*, is released :tada:. 30 fps version will be also released soon!
 * 2020.11.26. Demo code for a random image is added! Checkout below instructions.
 * 2020.11.26. Fitted MANO parameters are updated to the better ones (fitting error is about 5 mm). Also, reduced to much smaller file size by providing parameters fitted to the world coordinates (independent on the camera view).
 * 2020.10.7. Fitted MANO parameters are available! They are obtained by [NeuralAnnot](https://arxiv.org/abs/2011.11232).
@@ -84,8 +84,8 @@ ${ROOT}
 |   |   |   |-- rootnet_interhand2.6m_output_machine_annot_val.json
 ```
 * Download InterHand2.6M data [[HOMEPAGE](https://mks0601.github.io/InterHand2.6M/)]
-* Download STB parsed data [[images](https://www.dropbox.com/sh/ve1yoar9fwrusz0/AAAfu7Fo4NqUB7Dn9AiN8pCca?dl=0)] [[annotations](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/STB.annotations.zip)]
-* Download RHD parsed data [[images](https://lmb.informatik.uni-freiburg.de/resources/datasets/RenderedHandposeDataset.en.html)] [[annotations](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/RHD.annotations.zip)]
+* Download STB parsed data [[images](https://www.dropbox.com/sh/ve1yoar9fwrusz0/AAAfu7Fo4NqUB7Dn9AiN8pCca?dl=0)] [[annotations](https://github.com/facebookresearch/InterHand2.6M/releases/download/v1.0/STB.annotations.zip)]
+* Download RHD parsed data [[images](https://lmb.informatik.uni-freiburg.de/resources/datasets/RenderedHandposeDataset.en.html)] [[annotations](https://github.com/facebookresearch/InterHand2.6M/releases/download/v1.0/RHD.annotations.zip)]
 * All annotation files follow [MS COCO format](http://cocodataset.org/#format-data).  
 * If you want to add your own dataset, you have to convert it to [MS COCO format](http://cocodataset.org/#format-data).  
 
@@ -146,9 +146,8 @@ Here I provide the performance and pre-trained snapshots of InterNet, and output
 * Pre-trained InterNet [[Download](https://drive.google.com/drive/folders/18eQn8hwZN0hLqSNrxwalbRWhfVDS4Hla?usp=sharing)]
 
 ### Github release (can be slow)
-* Pre-trained InterNet trained on [[InterHand2.6M v0.0](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.InterHand2.6M.v0.0.zip)] [[full InterHand2.6M](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.InterHand2.6M.zip)] [[STB](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.STB.zip)] [[RHD](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.trained.on.RHD.zip)]
-* [RootNet](https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE) output on [[full InterHand2.6M](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/RootNet.output.on.InterHand2.6M.zip)] [[STB](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/RootNet.output.on.STB.zip)] [[RHD](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/RootNet.output.on.RHD.zip)]
-* InterNet evaluation results on [[InterHand2.6M v0.0](https://github.com/facebookresearch/InterHand2.6M/releases/download/v0.0/InterNet.results.on.InterHand2.6M.v0.0.zip)]
+* Pre-trained InterNet trained on [[full InterHand2.6M](https://github.com/facebookresearch/InterHand2.6M/releases/download/v1.0/InterNet.trained.on.InterHand2.6M.zip)] [[STB](https://github.com/facebookresearch/InterHand2.6M/releases/download/v1.0/InterNet.trained.on.STB.zip)] [[RHD](https://github.com/facebookresearch/InterHand2.6M/releases/download/v1.0/InterNet.trained.on.RHD.zip)]
+* [RootNet](https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE) output on [[full InterHand2.6M](https://github.com/facebookresearch/InterHand2.6M/releases/download/v1.0/RootNet.output.on.InterHand2.6M.zip)] [[STB](https://github.com/facebookresearch/InterHand2.6M/releases/download/v1.0/RootNet.output.on.STB.zip)] [[RHD](https://github.com/facebookresearch/InterHand2.6M/releases/download/v1.0/RootNet.output.on.RHD.zip)]
 
 ## Reference  
 ```  
