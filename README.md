@@ -142,12 +142,21 @@ to test the network on the GPU 0,1,2,3 with `snapshot_20.pth.tar`.  `--gpu 0,1,2
 
 ## Results  
 Here I provide the performance and pre-trained snapshots of InterNet, and output of the [RootNet](https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE) as well. 
-### Google drive (will be fast)
-* Pre-trained InterNet [[Download](https://drive.google.com/drive/folders/18eQn8hwZN0hLqSNrxwalbRWhfVDS4Hla?usp=sharing)]
+### InterNet trained on InterHnad2.6M
+* [[InterHand2.6M 5 fps H+M](https://drive.google.com/drive/folders/1BET1f5p2-1OBOz6aNLuPBAVs_9NLz5Jo?usp=sharing)]
+* [[InterHand2.6M 5 fps H](https://drive.google.com/drive/folders/1pgbA1K0Bhlhvborgga_naQ3lMsEOX0Cx?usp=sharing)]
+* [[InterHand2.6M 5 fps M](https://drive.google.com/drive/folders/1d9dWlGgyEIv0vcMPT1Ox_7lSUGhFXOdN?usp=sharing)]
+### InterNet trained on STB
+* [[Download](https://drive.google.com/drive/folders/178bGDdxfiboZjyMGsi5hE9m0rOFY2RaA?usp=sharing)]
+### InterNet trained on RHD
+* [[Download](https://drive.google.com/drive/folders/159O-_2l2_updTLv4tm4-xVPKrPG74Wsz?usp=sharing)]
+### RootNet output on InterHand2.6M
+* [[Download](https://drive.google.com/drive/folders/1DRUVTPg8-6grwr1qwquFi5Anwmxl7y0S?usp=sharing)]
+### RootNet output on STB
+* [[Download](https://drive.google.com/drive/folders/1TTeWhZXCrW0Uc42x4VyFABbJToSILU9i?usp=sharing)]
+### RootNet output on RHD
+* [[Download](https://drive.google.com/drive/folders/197dKUFNHW_BlVJ7iONw_ut9m-UrCtEaD?usp=sharing)]
 
-### Github release (can be slow)
-* Pre-trained InterNet trained on [[full InterHand2.6M](https://github.com/facebookresearch/InterHand2.6M/releases/download/v1.0/InterNet.trained.on.InterHand2.6M.zip)] [[STB](https://github.com/facebookresearch/InterHand2.6M/releases/download/v1.0/InterNet.trained.on.STB.zip)] [[RHD](https://github.com/facebookresearch/InterHand2.6M/releases/download/v1.0/InterNet.trained.on.RHD.zip)]
-* [RootNet](https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE) output on [[full InterHand2.6M](https://github.com/facebookresearch/InterHand2.6M/releases/download/v1.0/RootNet.output.on.InterHand2.6M.zip)] [[STB](https://github.com/facebookresearch/InterHand2.6M/releases/download/v1.0/RootNet.output.on.STB.zip)] [[RHD](https://github.com/facebookresearch/InterHand2.6M/releases/download/v1.0/RootNet.output.on.RHD.zip)]
 
 ## Reference  
 ```  
