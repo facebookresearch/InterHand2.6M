@@ -73,7 +73,7 @@ cam_idx = '400030'
 save_path = osp.join(subset, split, capture_idx, seq_name, cam_idx)
 os.makedirs(save_path, exist_ok=True)
 
-with open(osp.join(annot_root_path, subset, 'InterHand2.6M_' + split + '_MANO.json')) as f:
+with open(osp.join(annot_root_path, subset, 'InterHand2.6M_' + split + '_MANO_NeuralAnnot.json')) as f:
     mano_params = json.load(f)
 with open(osp.join(annot_root_path, subset, 'InterHand2.6M_' + split + '_camera.json')) as f:
     cam_params = json.load(f)
