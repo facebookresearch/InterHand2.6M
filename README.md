@@ -142,7 +142,7 @@ to test the network on the GPU 0,1,2,3 with `snapshot_20.pth.tar`.  `--gpu 0,1,2
 
 ## Results  
 Here I provide the performance and pre-trained snapshots of InterNet, and output of the [RootNet](https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE) as well. 
-### Download pre-trained InterNet
+### Pre-trained InterNet
 * [[Trained on InterHand2.6M 5 fps H+M](https://drive.google.com/drive/folders/1BET1f5p2-1OBOz6aNLuPBAVs_9NLz5Jo?usp=sharing)]
 * [[Trained on InterHand2.6M 5 fps H](https://drive.google.com/drive/folders/1pgbA1K0Bhlhvborgga_naQ3lMsEOX0Cx?usp=sharing)]
 * [[Trained on InterHand2.6M 5 fps M](https://drive.google.com/drive/folders/1d9dWlGgyEIv0vcMPT1Ox_7lSUGhFXOdN?usp=sharing)]
@@ -153,7 +153,7 @@ Here I provide the performance and pre-trained snapshots of InterNet, and output
 * [[Output on STB](https://drive.google.com/drive/folders/1TTeWhZXCrW0Uc42x4VyFABbJToSILU9i?usp=sharing)]
 * [[Output on RHD](https://drive.google.com/drive/folders/197dKUFNHW_BlVJ7iONw_ut9m-UrCtEaD?usp=sharing)]
 ### RootNet code
-* [link](https://drive.google.com/drive/folders/1dYCgmHqW1qoD3osoB_Z4XWiaKcG7__-8?usp=sharing)
+* [Link](https://drive.google.com/drive/folders/1dYCgmHqW1qoD3osoB_Z4XWiaKcG7__-8?usp=sharing)
 
 ## Reference  
 ```  
