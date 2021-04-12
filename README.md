@@ -153,7 +153,8 @@ Here I provide the performance and pre-trained snapshots of InterNet, and output
 * [[Output on STB](https://drive.google.com/drive/folders/1TTeWhZXCrW0Uc42x4VyFABbJToSILU9i?usp=sharing)]
 * [[Output on RHD](https://drive.google.com/drive/folders/197dKUFNHW_BlVJ7iONw_ut9m-UrCtEaD?usp=sharing)]
 ### RootNet code
-* [Link](https://drive.google.com/drive/folders/1dYCgmHqW1qoD3osoB_Z4XWiaKcG7__-8?usp=sharing)
+* [Code](https://drive.google.com/drive/folders/1dYCgmHqW1qoD3osoB_Z4XWiaKcG7__-8?usp=sharing)
+* See [RootNet](https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE) for the code instructions.
 
 ## Reference  
 ```  
