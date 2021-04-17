@@ -37,9 +37,14 @@ Above demo videos have low-quality frames because of the compression for the REA
 
 ## MANO mesh rendering demo
 1. Install [SMPLX](https://github.com/vchoutas/smplx)
-2. `cd MANO_render`
-3. Set `smplx_path` and `root_path` in `render.py`
+2. `cd tool/MANO_render`
+3. Set `smplx_path` in `render.py`
 3. Run `python render.py`
+
+## Camera positions visualization demo
+1. `cd tool/camera_visualize`
+2. Run `python camera_visualize.py`
+* As there are *many* cameras, you'd better set `subset` and `split` in line 9 and 10, respectively, by yourself.
 
 ## Directory
 
