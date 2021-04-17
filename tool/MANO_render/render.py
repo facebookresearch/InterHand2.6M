@@ -61,7 +61,7 @@ if torch.sum(torch.abs(mano_layer['left'].shapedirs[:,0,:] - mano_layer['right']
     print('Fix shapedirs bug of MANO')
     mano_layer['left'].shapedirs[:,0,:] *= -1
             
-root_path = 'PATH_TO_DB'
+root_path = '../../data/InterHand2.6M/data/'
 img_root_path = osp.join(root_path, 'images')
 annot_root_path = osp.join(root_path, 'annotations')
 subset = 'all'
