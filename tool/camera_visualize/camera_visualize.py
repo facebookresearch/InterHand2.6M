@@ -1,3 +1,5 @@
+# Copyright (c) Facebook, Inc. and its affiliates.
+
 import json
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
