@@ -173,3 +173,6 @@ year = {2020}
 
 ## License
 InterHand2.6M is CC-BY-NC 4.0 licensed, as found in the LICENSE file.
+
+[[Terms of Use](https://opensource.facebook.com/legal/terms)]
+[[Privacy Policy](https://opensource.facebook.com/legal/privacy)]
