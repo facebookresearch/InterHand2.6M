@@ -6,6 +6,7 @@ import cv2
 import json
 from glob import glob
 import os.path as osp
+os.environ["PYOPENGL_PLATFORM"] = "egl"
 import pyrender
 import trimesh
 from tqdm import tqdm
