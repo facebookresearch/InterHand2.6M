@@ -9,12 +9,8 @@ import os.path as osp
 os.environ["PYOPENGL_PLATFORM"] = "egl"
 import pyrender
 import trimesh
-from tqdm import tqdm
 import smplx
 import torch
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-from tqdm import tqdm
 
 def save_obj(v, f, file_name='output.obj'):
     obj_file = open(file_name, 'w')
@@ -24,45 +20,16 @@ def save_obj(v, f, file_name='output.obj'):
         obj_file.write('f ' + str(f[i][0]+1) + '/' + str(f[i][0]+1) + ' ' + str(f[i][1]+1) + '/' + str(f[i][1]+1) + ' ' + str(f[i][2]+1) + '/' + str(f[i][2]+1) + '\n')
     obj_file.close()
     
-def get_fitting_error(mesh, regressor, cam_params, joints, hand_type, capture_id, frame_idx, cam):
-    # ih26m joint coordinates from MANO mesh
-    ih26m_joint_from_mesh = np.dot(regressor, mesh)
-
-    # camera extrinsic parameters
-    t, R = np.array(cam_params[str(capture_id)]['campos'][str(cam)], dtype=np.float32).reshape(3), np.array(cam_params[str(capture_id)]['camrot'][str(cam)], dtype=np.float32).reshape(3,3)
-    t = -np.dot(R,t.reshape(3,1)).reshape(3) # -Rt -> t
-    
-    # ih26m joint coordinates (transform world coordinates to camera-centered coordinates)
-    ih26m_joint_world = np.array(joints[str(capture_id)][str(frame_idx)]['world_coord'], dtype=np.float32).reshape(-1,3)
-    ih26m_joint_cam = np.dot(R, ih26m_joint_world.transpose(1,0)).transpose(1,0) + t.reshape(1,3)
-    ih26m_joint_valid = np.array(joints[str(capture_id)][str(frame_idx)]['joint_valid'], dtype=np.float32).reshape(-1,1)
-
-    # choose one of right and left hands
-    if hand_type == 'right':
-        ih26m_joint_cam = ih26m_joint_cam[np.arange(0,21),:]
-        ih26m_joint_valid = ih26m_joint_valid[np.arange(0,21),:]
-    else:
-        ih26m_joint_cam = ih26m_joint_cam[np.arange(21,21*2),:]
-        ih26m_joint_valid = ih26m_joint_valid[np.arange(21,21*2),:]
-
-    # coordinate masking for error calculation
-    ih26m_joint_from_mesh = ih26m_joint_from_mesh[np.tile(ih26m_joint_valid==1, (1,3))].reshape(-1,3)
-    ih26m_joint_cam = ih26m_joint_cam[np.tile(ih26m_joint_valid==1, (1,3))].reshape(-1,3)
-
-    error = np.sqrt(np.sum((ih26m_joint_from_mesh - ih26m_joint_cam)**2,1)).mean()
-    return error
-
 # mano layer
 smplx_path = 'SMPLX_PATH'
 mano_layer = {'right': smplx.create(smplx_path, 'mano', use_pca=False, is_rhand=True), 'left': smplx.create(smplx_path, 'mano', use_pca=False, is_rhand=False)}
-ih26m_joint_regressor = np.load('J_regressor_mano_ih26m.npy')
 
 # fix MANO shapedirs of the left hand bug (https://github.com/vchoutas/smplx/issues/48)
 if torch.sum(torch.abs(mano_layer['left'].shapedirs[:,0,:] - mano_layer['right'].shapedirs[:,0,:])) < 1:
     print('Fix shapedirs bug of MANO')
     mano_layer['left'].shapedirs[:,0,:] *= -1
             
-root_path = '../../data/InterHand2.6M/data/'
+root_path = '../../data/InterHand2.6M/'
 img_root_path = osp.join(root_path, 'images')
 annot_root_path = osp.join(root_path, 'annotations')
 subset = 'all'
@@ -82,7 +49,7 @@ with open(osp.join(annot_root_path, subset, 'InterHand2.6M_' + split + '_joint_3
     joints = json.load(f)
 
 img_path_list = glob(osp.join(img_root_path, split, 'Capture' + capture_idx, seq_name, 'cam' + cam_idx, '*.jpg'))
-for img_path in tqdm(img_path_list):
+for img_path in img_path_list:
     frame_idx = img_path.split('/')[-1][5:-4]
     img = cv2.imread(img_path)
     img_height, img_width, _ = img.shape
@@ -102,7 +69,7 @@ for img_path in tqdm(img_path_list):
         root_pose = mano_pose[0].view(1,3)
         hand_pose = mano_pose[1:,:].view(1,-1)
         shape = torch.FloatTensor(mano_param['shape']).view(1,-1)
-        trans = torch.FloatTensor(mano_param['trans']).view(1,-1)
+        trans = torch.FloatTensor(mano_param['trans']).view(1,3)
         output = mano_layer[hand_type](global_orient=root_pose, hand_pose=hand_pose, betas=shape, transl=trans)
         mesh = output.vertices[0].numpy() * 1000 # meter to milimeter
         
@@ -111,10 +78,6 @@ for img_path in tqdm(img_path_list):
         t, R = np.array(cam_param['campos'][str(cam_idx)], dtype=np.float32).reshape(3), np.array(cam_param['camrot'][str(cam_idx)], dtype=np.float32).reshape(3,3)
         t = -np.dot(R,t.reshape(3,1)).reshape(3) # -Rt -> t
         mesh = np.dot(R, mesh.transpose(1,0)).transpose(1,0) + t.reshape(1,3)
-        
-        # fitting error
-        fit_err = get_fitting_error(mesh, ih26m_joint_regressor, cam_params, joints, hand_type, capture_idx, frame_idx, cam_idx)
-        print('Fitting error: ' + str(fit_err)+ ' mm')
         
         # save mesh to obj files
         save_obj(mesh, mano_layer[hand_type].faces, osp.join(save_path, img_path.split('/')[-1][:-4] + '_' + hand_type + '.obj'))
