@@ -41,6 +41,12 @@ Above demo videos have low-quality frames because of the compression for the REA
 3. Set `smplx_path` in `render.py`
 3. Run `python render.py`
 
+## MANO parameter conversion from the world coordinate to the camera coordinate system
+1. Install [SMPLX](https://github.com/vchoutas/smplx)
+2. `cd tool/MANO_world_to_camera/`
+3. Set `smplx_path` in `convert.py`
+3. Run `python convert.py`
+
 ## Camera positions visualization demo
 1. `cd tool/camera_visualize`
 2. Run `python camera_visualize.py`
