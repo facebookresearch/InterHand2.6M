@@ -21,7 +21,6 @@ def parse_args():
     parser.add_argument('--gpu', type=str, dest='gpu_ids')
     parser.add_argument('--test_epoch', type=str, dest='test_epoch')
     parser.add_argument('--test_set', type=str, dest='test_set')
-    parser.add_argument('--annot_subset', type=str, dest='annot_subset')
     args = parser.parse_args()
 
     if not args.gpu_ids:
@@ -44,13 +43,11 @@ def main():
     
     if cfg.dataset == 'InterHand2.6M':
         assert args.test_set, 'Test set is required. Select one of test/val'
-        assert args.annot_subset, "Please set proper annotation subset. Select one of all, human_annot, machine_annot"
     else:
         args.test_set = 'test'
-        args.annot_subset = 'all'
 
     tester = Tester(args.test_epoch)
-    tester._make_batch_generator(args.test_set, args.annot_subset)
+    tester._make_batch_generator(args.test_set)
     tester._make_model()
     
     preds = {'joint_coord': [], 'rel_root_depth': [], 'hand_type': [], 'inv_trans': []}
