@@ -22,7 +22,7 @@ import math
 from pycocotools.coco import COCO
 
 class Dataset(torch.utils.data.Dataset):
-    def __init__(self, transform, mode, annot_subset):
+    def __init__(self, transform, mode):
         self.mode = mode
         self.root_path = '../data/RHD/data'
         self.rootnet_output_path = '../data/RHD/rootnet_output/rootnet_rhd_output.json'
