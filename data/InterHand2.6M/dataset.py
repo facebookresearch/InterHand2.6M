@@ -23,15 +23,14 @@ from pycocotools.coco import COCO
 import scipy.io as sio
 
 class Dataset(torch.utils.data.Dataset):
-    def __init__(self, transform, mode, annot_subset):
+    def __init__(self, transform, mode):
         self.mode = mode # train, test, val
-        self.annot_subset = annot_subset # all, human_annot, machine_annot
         self.img_path = '../data/InterHand2.6M/images'
         self.annot_path = '../data/InterHand2.6M/annotations'
-        if self.annot_subset == 'machine_annot' and self.mode == 'val':
-            self.rootnet_output_path = '../data/InterHand2.6M/rootnet_output/rootnet_interhand2.6m_output_machine_annot_val.json'
+        if self.mode == 'val':
+            self.rootnet_output_path = '../data/InterHand2.6M/rootnet_output/rootnet_interhand2.6m_output_val.json'
         else:
-            self.rootnet_output_path = '../data/InterHand2.6M/rootnet_output/rootnet_interhand2.6m_output_all_test.json'
+            self.rootnet_output_path = '../data/InterHand2.6M/rootnet_output/rootnet_interhand2.6m_output_test.json'
         self.transform = transform
         self.joint_num = 21 # single hand
         self.root_joint_idx = {'right': 20, 'left': 41}
@@ -44,11 +43,11 @@ class Dataset(torch.utils.data.Dataset):
         self.sequence_names = []
         
         # load annotation
-        print("Load annotation from  " + osp.join(self.annot_path, self.annot_subset))
-        db = COCO(osp.join(self.annot_path, self.annot_subset, 'InterHand2.6M_' + self.mode + '_data.json'))
-        with open(osp.join(self.annot_path, self.annot_subset, 'InterHand2.6M_' + self.mode + '_camera.json')) as f:
+        print("Load annotation from  " + osp.join(self.annot_path, self.mode))
+        db = COCO(osp.join(self.annot_path, self.mode, 'InterHand2.6M_' + self.mode + '_data.json'))
+        with open(osp.join(self.annot_path, self.mode, 'InterHand2.6M_' + self.mode + '_camera.json')) as f:
             cameras = json.load(f)
-        with open(osp.join(self.annot_path, self.annot_subset, 'InterHand2.6M_' + self.mode + '_joint_3d.json')) as f:
+        with open(osp.join(self.annot_path, self.mode, 'InterHand2.6M_' + self.mode + '_joint_3d.json')) as f:
             joints = json.load(f)
 
         if (self.mode == 'val' or self.mode == 'test') and cfg.trans_test == 'rootnet':
