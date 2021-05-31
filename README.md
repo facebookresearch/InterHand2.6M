@@ -83,16 +83,18 @@ ${ROOT}
 |   |   |   |-- rootnet_rhd_output.json
 |   |-- InterHand2.6M
 |   |   |-- annotations
-|   |   |   |-- all
-|   |   |   |-- human_annot
-|   |   |   |-- machine_annot
+|   |   |   |-- train
+|   |   |   |-- test
+|   |   |   |-- val
 |   |   |-- images
 |   |   |   |-- train
-|   |   |   |-- val
 |   |   |   |-- test
+|   |   |   |-- val
 |   |   |-- rootnet_output
-|   |   |   |-- rootnet_interhand2.6m_output_all_test.json
-|   |   |   |-- rootnet_interhand2.6m_output_machine_annot_val.json
+|   |   |   |-- rootnet_interhand2.6m_output_test.json
+|   |   |   |-- rootnet_interhand2.6m_output_test_30fps.json
+|   |   |   |-- rootnet_interhand2.6m_output_val.json
+|   |   |   |-- rootnet_interhand2.6m_output_val_30fps.json
 ```
 * Download InterHand2.6M data [[HOMEPAGE](https://mks0601.github.io/InterHand2.6M/)]
 * Download STB parsed data [[images](https://www.dropbox.com/sh/ve1yoar9fwrusz0/AAAfu7Fo4NqUB7Dn9AiN8pCca?dl=0)] [[annotations](https://github.com/facebookresearch/InterHand2.6M/releases/download/v1.0/STB.annotations.zip)]
@@ -122,14 +124,9 @@ ${ROOT}
 ### Train
 In the `main` folder, run
 ```bash
-python train.py --gpu 0-3 --annot_subset $SUBSET
+python train.py --gpu 0-3
 ```
 to train the network on the GPU 0,1,2,3. `--gpu 0,1,2,3` can be used instead of `--gpu 0-3`. If you want to continue experiment, run use `--continue`. 
-
-`$SUBSET` is one of [`all`, `human_annot`, `machine_annot`]. 
-* `all`: Combination of the human and machine annotation. `Train (H+M)` in the paper.
-* `human_annot`: The human annotation. `Train (H)` in the paper.
-* `machine_annot`: The machine annotation. `Train (M)` in the paper.
 
 
 ### Test
@@ -137,19 +134,13 @@ Place trained model at the `output/model_dump/`.
 
 In the `main` folder, run 
 ```bash
-python test.py --gpu 0-3 --test_epoch 20 --test_set $DB_SPLIT --annot_subset $SUBSET
+python test.py --gpu 0-3 --test_epoch 20 --test_set $DB_SPLIT
 ```
 to test the network on the GPU 0,1,2,3 with `snapshot_20.pth.tar`.  `--gpu 0,1,2,3` can be used instead of `--gpu 0-3`. 
 
 `$DB_SPLIT` is one of [`val`,`test`].
 * `val`: The validation set. `Val` in the paper.
 * `test`: The test set. `Test` in the paper.
-
-
-`$SUBSET` is one of [`all`, `human_annot`, `machine_annot`].
-* `all`: Combination of the human and machine annotation. `(H+M)` in the paper.
-* `human_annot`: The human annotation. `(H)` in the paper.
-* `machine_annot`: The machine annotation. `(M)` in the paper.
 
 ## Results  
 Here I provide the performance and pre-trained snapshots of InterNet, and output of the [RootNet](https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE) as well. 
