@@ -75,10 +75,10 @@ class Trainer(Base):
             cur_lr = g['lr']
 
         return cur_lr
-    def _make_batch_generator(self, annot_subset):
+    def _make_batch_generator(self):
         # data load and construct batch generator
         self.logger.info("Creating train dataset...")
-        trainset_loader = Dataset(transforms.ToTensor(), "train", annot_subset)
+        trainset_loader = Dataset(transforms.ToTensor(), "train")
         batch_generator = DataLoader(dataset=trainset_loader, batch_size=cfg.num_gpus*cfg.train_batch_size, shuffle=True, num_workers=cfg.num_thread, pin_memory=True)
         
         self.joint_num = trainset_loader.joint_num
@@ -129,10 +129,10 @@ class Tester(Base):
         self.test_epoch = int(test_epoch)
         super(Tester, self).__init__(log_name = 'test_logs.txt')
 
-    def _make_batch_generator(self, test_set, annot_subset):
+    def _make_batch_generator(self, test_set):
         # data load and construct batch generator
         self.logger.info("Creating " + test_set + " dataset...")
-        testset_loader = Dataset(transforms.ToTensor(), test_set, annot_subset)
+        testset_loader = Dataset(transforms.ToTensor(), test_set)
         batch_generator = DataLoader(dataset=testset_loader, batch_size=cfg.num_gpus*cfg.test_batch_size, shuffle=False, num_workers=cfg.num_thread, pin_memory=True)
         
         self.joint_num = testset_loader.joint_num
