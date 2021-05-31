@@ -15,7 +15,6 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--gpu', type=str, dest='gpu_ids')
     parser.add_argument('--continue', dest='continue_train', action='store_true')
-    parser.add_argument('--annot_subset', type=str, dest='annot_subset')
     args = parser.parse_args()
 
     if not args.gpu_ids:
@@ -36,13 +35,8 @@ def main():
     cfg.set_args(args.gpu_ids, args.continue_train)
     cudnn.benchmark = True
 
-    if cfg.dataset == 'InterHand2.6M':
-        assert args.annot_subset, "Please set proper annotation subset. Select one of all, human_annot, machine_annot"
-    else:
-        args.annot_subset = None
-
     trainer = Trainer()
-    trainer._make_batch_generator(args.annot_subset)
+    trainer._make_batch_generator()
     trainer._make_model()
     
     # train
