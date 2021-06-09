@@ -47,11 +47,11 @@ capture_idx = '13'
 seq_name = '0266_dh_pray'
 cam_idx = '400030'
 
-with open(osp.join(annot_root_path, subset, 'InterHand2.6M_' + split + '_MANO_NeuralAnnot.json')) as f:
+with open(osp.join(annot_root_path, split, 'InterHand2.6M_' + split + '_MANO_NeuralAnnot.json')) as f:
     mano_params = json.load(f)
-with open(osp.join(annot_root_path, subset, 'InterHand2.6M_' + split + '_camera.json')) as f:
+with open(osp.join(annot_root_path, split, 'InterHand2.6M_' + split + '_camera.json')) as f:
     cam_params = json.load(f)
-with open(osp.join(annot_root_path, subset, 'InterHand2.6M_' + split + '_joint_3d.json')) as f:
+with open(osp.join(annot_root_path, split, 'InterHand2.6M_' + split + '_joint_3d.json')) as f:
     joints = json.load(f)
 
 img_path_list = glob(osp.join(img_root_path, split, 'Capture' + capture_idx, seq_name, 'cam' + cam_idx, '*.jpg'))
