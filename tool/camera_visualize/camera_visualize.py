@@ -8,22 +8,17 @@ import matplotlib as mpl
 
 # load camera positions
 campos_dict = {}
-for subset in ('all', 'machine_annot', 'human_annot'):
-    for split in ('train', 'test', 'val'):
-        
-        if split == 'val' and subset != 'machine_annot':
-            continue
-        
-        with open('../../data/InterHand2.6M/data/annotations/' + subset + '/InterHand2.6M_' + split + '_camera.json') as f:
-            cameras = json.load(f)
-        for capture_id in cameras.keys():
-            for cam_id in cameras[capture_id]['campos'].keys():
-                campos = np.array(cameras[capture_id]['campos'][cam_id], dtype=np.float32)
+for split in ('train', 'test', 'val'):
+    with open('../../data/InterHand2.6M/data/annotations/' + split + '/InterHand2.6M_' + split + '_camera.json') as f:
+        cameras = json.load(f)
+    for capture_id in cameras.keys():
+        for cam_id in cameras[capture_id]['campos'].keys():
+            campos = np.array(cameras[capture_id]['campos'][cam_id], dtype=np.float32)
 
-                # exact camera positions can be slightly different for each 'capture_id'.
-                # however, just overwrite them for the visualization purpose.
-                if cam_id not in campos_dict:
-                    campos_dict[cam_id] = campos
+            # exact camera positions can be slightly different for each 'capture_id'.
+            # however, just overwrite them for the visualization purpose.
+            if cam_id not in campos_dict:
+                campos_dict[cam_id] = campos
 
 # plot camera positions
 fig = plt.figure()
