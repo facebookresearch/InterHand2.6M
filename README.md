@@ -19,6 +19,7 @@ Above demo videos have low-quality frames because of the compression for the REA
 </p>
 
 ## News
+* 2021.06.10. Boxs in RootNet results are updated to be correct.
 * 2021.03.22. Finally, InterHand2.6M v1.0, which includes *all images of 5 fps and 30 fps version*, is released! :tada: This is the dataset used in InterHand2.6M paper.
 * 2020.11.26. Demo code for a random image is added! Checkout below instructions.
 * 2020.11.26. Fitted MANO parameters are updated to the better ones (fitting error is about 5 mm). Also, reduced to much smaller file size by providing parameters fitted to the world coordinates (independent on the camera view).
