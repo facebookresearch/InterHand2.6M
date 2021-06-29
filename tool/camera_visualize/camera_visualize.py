@@ -9,7 +9,7 @@ import matplotlib as mpl
 # load camera positions
 campos_dict = {}
 for split in ('train', 'test', 'val'):
-    with open('../../data/InterHand2.6M/data/annotations/' + split + '/InterHand2.6M_' + split + '_camera.json') as f:
+    with open('../../data/InterHand2.6M/annotations/' + split + '/InterHand2.6M_' + split + '_camera.json') as f:
         cameras = json.load(f)
     for capture_id in cameras.keys():
         for cam_id in cameras[capture_id]['campos'].keys():
