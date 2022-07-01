@@ -30,7 +30,7 @@ Above demo videos have low-quality frames because of the compression for the REA
 * Belows are instructions for **our baseline model**, InterNet, for 3D interacting hand pose estimation from a single RGB image.
 
 ## Demo on a random image
-1. Download pre-trained InterNet from [here](https://drive.google.com/drive/folders/1BET1f5p2-1OBOz6aNLuPBAVs_9NLz5Jo?usp=sharing)
+1. Download pre-trained InterNet from [here](https://drive.google.com/file/d/15Akkzf1AvKm6iKYQGPhBfGLSeF9DPiFZ/view?usp=sharing)
 2. Put the model at `demo` folder
 3. Go to `demo` folder and edit `bbox` in [here](https://github.com/facebookresearch/InterHand2.6M/blob/5de679e614151ccfd140f0f20cc08a5f94d4b147/demo/demo.py#L74)
 4. run `python demo.py --gpu 0 --test_epoch 20`
@@ -146,15 +146,15 @@ to test the network on the GPU 0,1,2,3 with `snapshot_20.pth.tar`.  `--gpu 0,1,2
 ## Results  
 Here I provide the performance and pre-trained snapshots of InterNet, and output of the [RootNet](https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE) as well. 
 ### Pre-trained InterNet
-* [[Trained on InterHand2.6M 5 fps (v1.0)](https://drive.google.com/drive/folders/143sqUHLq3stQTvJdV1YdBivnkM1bfAJE?usp=sharing)]
-* [[Trained on STB](https://drive.google.com/drive/folders/178bGDdxfiboZjyMGsi5hE9m0rOFY2RaA?usp=sharing)]
-* [[Trained on RHD](https://drive.google.com/drive/folders/159O-_2l2_updTLv4tm4-xVPKrPG74Wsz?usp=sharing)]
+* [[Trained on InterHand2.6M 5 fps (v1.0)](https://drive.google.com/file/d/15Akkzf1AvKm6iKYQGPhBfGLSeF9DPiFZ/view?usp=sharing)]
+* [[Trained on STB](https://drive.google.com/file/d/1DVsYnpj31l7TGtYwOWBX6zPIonj_3Xz5/view?usp=sharing)]
+* [[Trained on RHD](https://drive.google.com/file/d/1_UcYwE6E0-6Xs8Wg4KSzeFJ1QZE3Vjnl/view?usp=sharing)]
 ### RootNet output
-* [[Output on InterHand2.6M](https://drive.google.com/drive/folders/1DRUVTPg8-6grwr1qwquFi5Anwmxl7y0S?usp=sharing)]
-* [[Output on STB](https://drive.google.com/drive/folders/1TTeWhZXCrW0Uc42x4VyFABbJToSILU9i?usp=sharing)]
-* [[Output on RHD](https://drive.google.com/drive/folders/197dKUFNHW_BlVJ7iONw_ut9m-UrCtEaD?usp=sharing)]
+* [[Output on InterHand2.6M](https://drive.google.com/drive/folders/1qaS67WjwKb1b-QHv9nlHNq7Tkl9TjmzV?usp=sharing)]
+* [[Output on STB](https://drive.google.com/file/d/1E0CyRCIUDEecRZbMlIzsMEXBg65JuBJl/view?usp=sharing)]
+* [[Output on RHD](https://drive.google.com/file/d/14DnurnMZOpfZtMpj-hn-Iw3GQbvkEPxP/view?usp=sharing)]
 ### RootNet codes
-* [Codes](https://drive.google.com/drive/folders/1dYCgmHqW1qoD3osoB_Z4XWiaKcG7__-8?usp=sharing)
+* [Codes](https://drive.google.com/drive/folders/1reXntog5o551DKRa1_6E8caHHbbCppz0?usp=sharing)
 * See [RootNet](https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE) for the code instructions.
 
 ## Reference  
