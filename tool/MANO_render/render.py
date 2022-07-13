@@ -32,13 +32,12 @@ if torch.sum(torch.abs(mano_layer['left'].shapedirs[:,0,:] - mano_layer['right']
 root_path = '../../data/InterHand2.6M/'
 img_root_path = osp.join(root_path, 'images')
 annot_root_path = osp.join(root_path, 'annotations')
-subset = 'all'
 split = 'train'
 capture_idx = '13'
 seq_name = '0266_dh_pray'
 cam_idx = '400030'
 
-save_path = osp.join(subset, split, capture_idx, seq_name, cam_idx)
+save_path = osp.join(split, capture_idx, seq_name, cam_idx)
 os.makedirs(save_path, exist_ok=True)
 
 with open(osp.join(annot_root_path, split, 'InterHand2.6M_' + split + '_MANO_NeuralAnnot.json')) as f:
