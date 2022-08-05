@@ -67,7 +67,7 @@ model.eval()
 # prepare input image
 transform = transforms.ToTensor()
 img_path = 'input.jpg'
-original_img = cv2.imread(img_path)
+original_img = load_img(img_path)
 original_img_height, original_img_width = original_img.shape[:2]
 
 # prepare bbox
