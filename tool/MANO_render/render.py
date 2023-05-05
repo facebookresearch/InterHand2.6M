@@ -7,10 +7,20 @@ import json
 from glob import glob
 import os.path as osp
 os.environ["PYOPENGL_PLATFORM"] = "egl"
-import pyrender
-import trimesh
 import smplx
 import torch
+from pytorch3d.structures import Meshes
+from pytorch3d.renderer import (
+PointLights,
+DirectionalLights,
+PerspectiveCameras,
+Materials,
+SoftPhongShader,
+RasterizationSettings,
+MeshRenderer,
+MeshRendererWithFragments,
+MeshRasterizer,
+TexturesVertex)
 
 def save_obj(v, f, file_name='output.obj'):
     obj_file = open(file_name, 'w')
@@ -19,7 +29,43 @@ def save_obj(v, f, file_name='output.obj'):
     for i in range(len(f)):
         obj_file.write('f ' + str(f[i][0]+1) + '/' + str(f[i][0]+1) + ' ' + str(f[i][1]+1) + '/' + str(f[i][1]+1) + ' ' + str(f[i][2]+1) + '/' + str(f[i][2]+1) + '\n')
     obj_file.close()
-    
+
+def render_mesh(mesh, face, cam_param, render_shape, hand_type):
+    batch_size, vertex_num = mesh.shape[:2]
+    mesh = mesh / 1000 # milimeter to meter
+
+    textures = TexturesVertex(verts_features=torch.ones((batch_size,vertex_num,3)).float().cuda())
+    mesh = torch.stack((-mesh[:,:,0], -mesh[:,:,1], mesh[:,:,2]),2) # reverse x- and y-axis following PyTorch3D axis direction
+    mesh = Meshes(mesh, face, textures)
+
+    cameras = PerspectiveCameras(focal_length=cam_param['focal'], 
+                                principal_point=cam_param['princpt'], 
+                                device='cuda',
+                                in_ndc=False,
+                                image_size=torch.LongTensor(render_shape).cuda().view(1,2))
+    raster_settings = RasterizationSettings(image_size=render_shape, blur_radius=0.0, faces_per_pixel=1, perspective_correct=True)
+    rasterizer = MeshRasterizer(cameras=cameras, raster_settings=raster_settings).cuda()
+    lights = PointLights(device='cuda')
+    shader = SoftPhongShader(device='cuda', cameras=cameras, lights=lights)
+    if hand_type == 'right':
+        color = ((1.0, 0.0, 0.0),)
+    else:
+        color = ((0.0, 1.0, 0.0),)
+    materials = Materials(
+	device='cuda',
+        specular_color=color,
+	shininess=0
+    )
+
+    # render
+    with torch.no_grad():
+        renderer = MeshRendererWithFragments(rasterizer=rasterizer, shader=shader)
+        images, fragments = renderer(mesh, materials=materials)
+        images = images[:,:,:,:3] * 255
+        depthmaps = fragments.zbuf
+
+    return images, depthmaps
+   
 # mano layer
 smplx_path = 'SMPLX_PATH'
 mano_layer = {'right': smplx.create(smplx_path, 'mano', use_pca=False, is_rhand=True), 'left': smplx.create(smplx_path, 'mano', use_pca=False, is_rhand=False)}
@@ -53,7 +99,7 @@ for img_path in img_path_list:
     img = cv2.imread(img_path)
     img_height, img_width, _ = img.shape
     
-    prev_depth = None
+    prev_render_depth = None
     for hand_type in ('right', 'left'):
         # get mesh coordinate
         try:
@@ -81,49 +127,26 @@ for img_path in img_path_list:
         # save mesh to obj files
         save_obj(mesh, mano_layer[hand_type].faces, osp.join(save_path, img_path.split('/')[-1][:-4] + '_' + hand_type + '.obj'))
         
-        # mesh
-        mesh = mesh / 1000 # milimeter to meter
-        mesh = trimesh.Trimesh(mesh, mano_layer[hand_type].faces)
-        rot = trimesh.transformations.rotation_matrix(
-            np.radians(180), [1, 0, 0])
-        mesh.apply_transform(rot)
-        material = pyrender.MetallicRoughnessMaterial(metallicFactor=0.0, alphaMode='OPAQUE', baseColorFactor=(1.0, 1.0, 0.9, 1.0))
-        mesh = pyrender.Mesh.from_trimesh(mesh, material=material, smooth=False)
-        scene = pyrender.Scene(ambient_light=(0.3, 0.3, 0.3))
-        scene.add(mesh, 'mesh')
-
-        # add camera intrinsics
-        focal = np.array(cam_param['focal'][cam_idx], dtype=np.float32).reshape(2)
-        princpt = np.array(cam_param['princpt'][cam_idx], dtype=np.float32).reshape(2)
-        camera = pyrender.IntrinsicsCamera(fx=focal[0], fy=focal[1], cx=princpt[0], cy=princpt[1])
-        scene.add(camera)
-        
-        # renderer
-        renderer = pyrender.OffscreenRenderer(viewport_width=img_width, viewport_height=img_height, point_size=1.0)
-       
-        # light
-        light = pyrender.DirectionalLight(color=[1.0, 1.0, 1.0], intensity=0.8)
-        light_pose = np.eye(4)
-        light_pose[:3, 3] = np.array([0, -1, 1])
-        scene.add(light, pose=light_pose)
-        light_pose[:3, 3] = np.array([0, 1, 1])
-        scene.add(light, pose=light_pose)
-        light_pose[:3, 3] = np.array([1, 1, 2])
-        scene.add(light, pose=light_pose)
-
         # render
-        rgb, depth = renderer.render(scene, flags=pyrender.RenderFlags.RGBA)
-        rgb = rgb[:,:,:3].astype(np.float32)
-        depth = depth[:,:,None]
-        valid_mask = (depth > 0)
-        if prev_depth is None:
+        mesh = torch.from_numpy(mesh).float().cuda()[None,:,:]
+        face = torch.from_numpy(mano_layer[hand_type].faces.astype(np.int32)).cuda()[None,:,:]
+        focal = torch.FloatTensor(cam_param['focal'][str(cam_idx)]).cuda()[None,:]
+        princpt = torch.FloatTensor(cam_param['princpt'][str(cam_idx)]).cuda()[None,:]
+        with torch.no_grad():
+            render_rgb, render_depth = render_mesh(mesh, face, {'focal': focal, 'princpt': princpt}, (img_height,img_width), hand_type)
+
+        # blend
+        render_rgb = render_rgb[0].cpu().numpy()
+        render_depth = render_depth[0].cpu().numpy()
+        valid_mask = render_depth > 0
+        if prev_render_depth is None:
             render_mask = valid_mask
-            img = rgb * render_mask + img * (1 - render_mask)
-            prev_depth = depth
+            render_out = render_rgb * render_mask + img * (1 - render_mask)
+            prev_render_depth = render_depth
         else:
-            render_mask = valid_mask * np.logical_or(depth < prev_depth, prev_depth==0)
-            img = rgb * render_mask + img * (1 - render_mask)
-            prev_depth = depth * render_mask + prev_depth * (1 - render_mask)
+            render_mask = valid_mask * np.logical_or(render_depth < prev_render_depth, prev_render_depth<=0)
+            render_out = render_rgb * render_mask + render_out * (1 - render_mask)
+            prev_render_depth = render_depth * render_mask + prev_render_depth * (1 - render_mask)
 
     # save image
-    cv2.imwrite(osp.join(save_path, img_path.split('/')[-1]), img)
+    cv2.imwrite(osp.join(save_path, img_path.split('/')[-1]), render_out)
