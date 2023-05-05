@@ -4,7 +4,8 @@
 ## Introduction
 * This repo is official **[PyTorch](https://pytorch.org)** implementation of **[InterHand2.6M: A Dataset and Baseline for 3D Interacting Hand Pose Estimation from a Single RGB Image (ECCV 2020)](https://arxiv.org/abs/2008.09309)**. 
 * Our **InterHand2.6M dataset** is the first large-scale real-captured dataset with **accurate GT 3D interacting hand poses**.
-* Videos of MANO fittings (only two hands) from the 30 fps split are available in [here](https://drive.google.com/drive/folders/1HZZy9pIiJcyIkmYQzCvg6i0RxCog-Usp?usp=share_link).
+* Videos of 3D joint coordinates (from joint_3d.json. only two hands) from the 30 fps split: [link](https://drive.google.com/drive/folders/1VGwUSf88_fGjWcQv4DlTaOe6wAWgS1Bq?usp=share_link). 
+* Videos of MANO fittings (only two hands) from the 30 fps split: [link](https://drive.google.com/drive/folders/1HZZy9pIiJcyIkmYQzCvg6i0RxCog-Usp?usp=share_link).
 
 <p align="middle">
     <img src="assets/teaser.gif", width="780" height="160">
