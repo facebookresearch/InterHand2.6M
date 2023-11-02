@@ -1,6 +1,8 @@
 
 # InterHand2.6M: A Dataset and Baseline for 3D Interacting Hand Pose Estimation from a Single RGB Image
 
+## Our new Re:InterHand dataset has been released, which has much more diverse image appearances with more stable 3D GT. Check it out at [here](https://mks0601.github.io/ReInterHand)!
+
 ## Introduction
 * This repo is official **[PyTorch](https://pytorch.org)** implementation of **[InterHand2.6M: A Dataset and Baseline for 3D Interacting Hand Pose Estimation from a Single RGB Image (ECCV 2020)](https://arxiv.org/abs/2008.09309)**. 
 * Our **InterHand2.6M dataset** is the first large-scale real-captured dataset with **accurate GT 3D interacting hand poses**.
