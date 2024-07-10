@@ -6,8 +6,8 @@
 ## Introduction
 * This repo is official **[PyTorch](https://pytorch.org)** implementation of **[InterHand2.6M: A Dataset and Baseline for 3D Interacting Hand Pose Estimation from a Single RGB Image (ECCV 2020)](https://arxiv.org/abs/2008.09309)**. 
 * Our **InterHand2.6M dataset** is the first large-scale real-captured dataset with **accurate GT 3D interacting hand poses**.
-* Videos of 3D joint coordinates (from joint_3d.json) from the 30 fps split: [link](https://1drv.ms/f/s!All7gdNh7XE5k3bfwTurcBoUkTrY?e=Atcjdl). 
-* Videos of MANO fittings (only two hands) from the 30 fps split: [link](https://1drv.ms/f/s!All7gdNh7XE5k3m7ctMU3o8HTR44?e=Zmc29Q).
+* Videos of 3D joint coordinates (from joint_3d.json. only two hands) from the 30 fps split: [link](https://drive.google.com/drive/folders/1VGwUSf88_fGjWcQv4DlTaOe6wAWgS1Bq?usp=share_link). 
+* Videos of MANO fittings (only two hands) from the 30 fps split: [link](https://drive.google.com/drive/folders/1HZZy9pIiJcyIkmYQzCvg6i0RxCog-Usp?usp=share_link).
 
 <p align="middle">
     <img src="assets/teaser.gif", width="780" height="160">
@@ -34,7 +34,7 @@ Above demo videos have low-quality frames because of the compression for the REA
 * Belows are instructions for **our baseline model**, InterNet, for 3D interacting hand pose estimation from a single RGB image.
 
 ## Demo on a random image
-1. Download pre-trained InterNet from [here](https://1drv.ms/u/s!All7gdNh7XE5oEr92i4zM-MGAlhr?e=9Q6f3O)
+1. Download pre-trained InterNet from [here](https://drive.google.com/file/d/15Akkzf1AvKm6iKYQGPhBfGLSeF9DPiFZ/view?usp=sharing)
 2. Put the model at `demo` folder
 3. Go to `demo` folder and edit `bbox` in [here](https://github.com/facebookresearch/InterHand2.6M/blob/5de679e614151ccfd140f0f20cc08a5f94d4b147/demo/demo.py#L74)
 4. run `python demo.py --gpu 0 --test_epoch 20`
@@ -150,13 +150,13 @@ to test the network on the GPU 0,1,2,3 with `snapshot_20.pth.tar`.  `--gpu 0,1,2
 ## Results  
 Here I provide the performance and pre-trained snapshots of InterNet, and output of the [RootNet](https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE) as well. 
 ### Pre-trained InterNet
-* [[Trained on InterHand2.6M 5 fps (v1.0)](https://1drv.ms/u/s!All7gdNh7XE5oEr92i4zM-MGAlhr?e=9Q6f3O)]
-* [[Trained on STB](https://1drv.ms/u/s!All7gdNh7XE5oExkDPsIxeVxcLRg?e=mntN9X)]
-* [[Trained on RHD](https://1drv.ms/u/s!All7gdNh7XE5oE-GP_UX6Uuhc70P?e=gQ2nVT)]
+* [[Trained on InterHand2.6M 5 fps (v1.0)](https://drive.google.com/file/d/15Akkzf1AvKm6iKYQGPhBfGLSeF9DPiFZ/view?usp=sharing)]
+* [[Trained on STB](https://drive.google.com/file/d/1DVsYnpj31l7TGtYwOWBX6zPIonj_3Xz5/view?usp=sharing)]
+* [[Trained on RHD](https://drive.google.com/file/d/1_UcYwE6E0-6Xs8Wg4KSzeFJ1QZE3Vjnl/view?usp=sharing)]
 ### RootNet output
-* [[Output on InterHand2.6M](https://1drv.ms/f/s!All7gdNh7XE5oDecZhpuQpwnXd2q?e=nU0UzL)]
-* [[Output on STB](https://1drv.ms/u/s!All7gdNh7XE5oDhETw7vDRBueSbx?e=VkdPtD)]
-* [[Output on RHD](https://1drv.ms/u/s!All7gdNh7XE5oEa8bh_N8qnEteGt?e=fNvoFH)]
+* [[Output on InterHand2.6M](https://drive.google.com/drive/folders/1qaS67WjwKb1b-QHv9nlHNq7Tkl9TjmzV?usp=sharing)]
+* [[Output on STB](https://drive.google.com/file/d/1E0CyRCIUDEecRZbMlIzsMEXBg65JuBJl/view?usp=sharing)]
+* [[Output on RHD](https://drive.google.com/file/d/14DnurnMZOpfZtMpj-hn-Iw3GQbvkEPxP/view?usp=sharing)]
 ### RootNet codes
 * [Codes](https://drive.google.com/drive/folders/1reXntog5o551DKRa1_6E8caHHbbCppz0?usp=sharing)
 * See [RootNet](https://github.com/mks0601/3DMPPE_ROOTNET_RELEASE) for the code instructions.
